@@ -8,6 +8,8 @@ interface BookmarkState {
   error: string | null;
   useSimpleCategories: boolean;
   cleanTitles: boolean;
+  categories: { id: string; name: string }[];
+  addBookmark: (bookmark: any) => void;
   setCleanTitles: (value: boolean) => void;
   setUseSimpleCategories: (value: boolean) => void;
   importBookmarks: (html: string) => Promise<void>;
@@ -21,6 +23,19 @@ export const useBookmarkStore = create<BookmarkState>((set, get) => ({
   error: null,
   useSimpleCategories: false,
   cleanTitles: false,
+  categories: [
+    { id: 'other', name: 'Diğer' },
+    { id: 'work', name: 'İş' },
+    { id: 'personal', name: 'Kişisel' },
+    { id: 'education', name: 'Eğitim' },
+    { id: 'entertainment', name: 'Eğlence' }
+  ],
+
+  addBookmark: (bookmark) => {
+    set((state) => ({
+      bookmarks: [...state.bookmarks, bookmark]
+    }));
+  },
 
   setCleanTitles: (value: boolean) => set({ cleanTitles: value }),
   setUseSimpleCategories: (value: boolean) => set({ useSimpleCategories: value }),

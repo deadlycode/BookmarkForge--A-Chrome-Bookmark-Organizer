@@ -70,7 +70,7 @@ export const AddBookmarkModal: React.FC<AddBookmarkModalProps> = ({ isOpen, onCl
               onChange={(e) => setCategory(e.target.value)}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             >
-              {categories.map((cat) => (
+              {categories.map((cat: { id: string; name: string }) => (
                 <option key={cat.id} value={cat.id}>
                   {cat.name}
                 </option>
